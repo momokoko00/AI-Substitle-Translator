@@ -265,6 +265,32 @@ const SubtitleGenerator = () => {
         'Translate Subtitle'
     );
 
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (file) {
+            const validExtensions = ['.srt', '.vvt', '.txt'];
+            const fileExtension = file.name.split('.').pop();
+            if (!validExtensions.includes(`.${fileExtension}`)) {
+                setTranslation({
+                    isLoading: false,
+                    error: 'Please upload a valid subtitle file (.srt, .vvt, .txt)',
+                    result: null,
+                    progress: 0,
+                    total: 0
+                });
+                return;
+            }
+            setFile(file);
+            setTranslation({
+                isLoading: false,
+                error: null,
+                result: null,
+                progress: 0,
+                total: 0
+            });
+        }
+    };
+
     return (
         <div className="grid grid-cols-1 md:grid-cols-10 gap-8 h-full">
             <div className="col-span-1 md:col-span-3 h-full">
@@ -308,7 +334,7 @@ const SubtitleGenerator = () => {
                     />
 
 
-                    <label className="border-dashed border-[1.5px] p-4 mt-4 flex gap-4 flex-col items-center text-center cursor-pointer w-full">
+                    <label className="border-dashed border-[1px] p-4 mt-4 flex gap-4 flex-col items-center text-center cursor-pointer w-[100%]">
                         <CloudUpload className="w-7 h-7 mb-2 text-gray-900" />
                         <p className="text-sm font-semibold">Upload a subtitle or drag and drop</p>
                         {file && <p className="text-sm text-blue-500">Selected: {file.name}</p>}
@@ -316,19 +342,7 @@ const SubtitleGenerator = () => {
                         <input
                             type="file"
                             className="sr-only"
-                            onChange={(e) => {
-                                const file = e.target.files?.[0];
-                                if (file) {
-                                    setFile(file);
-                                    setTranslation({
-                                        isLoading: false,
-                                        error: null,
-                                        result: null,
-                                        progress: 0,
-                                        total: 0
-                                    });
-                                }
-                            }}
+                            onChange={handleFileChange}
                         />
                     </label>
 
@@ -366,9 +380,9 @@ const SubtitleGenerator = () => {
                     )}
                 </div>
             </div>
-            <div className="col-span-1 md:col-span-7 h-[99vh] overflow-hidden">
+            <div className="col-span-1 md:col-span-7 h-[99vh] md:overflow-hidden">
                 {translation.result ? (
-                    <div className="flex-grow overflow-hidden bg-gray-100 p-4 mt-4 rounded">
+                    <div className="flex-grow md:overflow-hidden bg-gray-100 p-4 mt-4 rounded">
                         <div className="flex justify-between mb-4">
                             <h2 className="text-lg font-semibold">Preview Subtitle:</h2>
                             <Button
