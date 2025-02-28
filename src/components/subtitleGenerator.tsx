@@ -12,10 +12,6 @@ import { CloudUpload, Github, Download, Loader2 } from 'lucide-react';
 
 // Types for our application
 type APIProvider = 'openai' | 'gemini' | 'deepseek' | 'anthropic';
-type Language = {
-    code: string;
-    name: string;
-};
 
 interface TranslationState {
     isLoading: boolean;
@@ -181,7 +177,7 @@ const SubtitleGenerator = () => {
             const selectedLang = languages.find(lang => lang.code === targetLanguage)?.name || targetLanguage;
 
             let allTranslatedBlocks: SubtitleBlock[] = [];
-            let failedChunks: number[] = [];
+            const failedChunks: number[] = [];
 
             // Add logging to track progress and identify issues
             console.log('Starting translation process');
@@ -268,7 +264,7 @@ const SubtitleGenerator = () => {
                     <h1 className="text-xl font-bold mb-8">AI Subtitle Generator</h1>
 
                     <label className="mb-2 font-semibold text-sm">API Provider</label>
-                    <Select value={selectedProvider} onValueChange={(value: any) => setSelectedProvider(value)}>
+                    <Select value={selectedProvider} onValueChange={(value: APIProvider) => setSelectedProvider(value)}>
                         <SelectTrigger className="mb-4">
                             <SelectValue placeholder="Select API Provider" />
                         </SelectTrigger>
