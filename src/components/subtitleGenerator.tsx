@@ -338,7 +338,7 @@ const SubtitleGenerator = () => {
                         <CloudUpload className="w-7 h-7 mb-2 text-gray-900" />
                         <p className="text-sm font-semibold">Upload a subtitle or drag and drop</p>
                         {file && <p className="text-sm text-blue-500">Selected: {file.name}</p>}
-                        <p className="text-gray-500 text-xs">SRT, VVT or TXT Files</p>
+                        <p className="text-gray-500 text-xs">SRT, VVT or TXT files are allowed.</p>
                         <input
                             type="file"
                             className="sr-only"
