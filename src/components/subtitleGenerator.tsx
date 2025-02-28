@@ -277,9 +277,9 @@ const SubtitleGenerator = () => {
                             <SelectValue placeholder="Select API Provider" />
                         </SelectTrigger>
                         <SelectContent>
-                            <SelectItem value="openai">OpenAI (GPT-4O)</SelectItem>
-                            <SelectItem value="gemini">Google Gemini 2.0 Flash</SelectItem>
-                            <SelectItem value="deepseek">DeepSeek V3</SelectItem>
+                            <SelectItem value="openai">OpenAI (ChatGPT-4O)</SelectItem>
+                            <SelectItem value="gemini">Google (Gemini 2.0 Flash)</SelectItem>
+                            <SelectItem value="deepseek">DeepSeek (V3)</SelectItem>
                             <SelectItem value="anthropic">Anthropic (Claude 3.7 Sonnet)</SelectItem>
                         </SelectContent>
                     </Select>
@@ -308,14 +308,14 @@ const SubtitleGenerator = () => {
                     />
 
 
-                    <label className="border-dashed border-[1.5px] p-4 mt-4 flex gap-4 flex-col items-center text-center cursor-pointer">
+                    <label className="border-dashed border-[1.5px] p-4 mt-4 flex gap-4 flex-col items-center text-center cursor-pointer w-full">
                         <CloudUpload className="w-7 h-7 mb-2 text-gray-900" />
                         <p className="text-sm font-semibold">Upload a subtitle or drag and drop</p>
                         {file && <p className="text-sm text-blue-500">Selected: {file.name}</p>}
                         <p className="text-gray-500 text-xs">SRT, VVT or TXT Files</p>
                         <input
                             type="file"
-                            accept=".srt,.vtt,.txt"
+                            accept=".srt,text/plain,.vtt,.txt"
                             className="sr-only"
                             onChange={(e) => {
                                 const file = e.target.files?.[0];
