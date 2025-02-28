@@ -387,7 +387,7 @@ const SubtitleGenerator = () => {
                 {translation.result ? (
                     <div className="flex-grow md:overflow-hidden bg-gray-100 p-4 mt-4 rounded">
                         <div className="flex justify-between mb-4">
-                            <h2 className="text-lg font-semibold">Preview Subtitle:</h2>
+                            <h2 className="text-m font-semibold">Preview Subtitle:</h2>
                             <Button
                                 variant="outline"
                                 className="text-black p-2 rounded flex items-center"
