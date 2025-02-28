@@ -8,7 +8,7 @@ import { parseSubtitles, chunkSubtitles, blocksToString, SubtitleBlock } from '.
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/Select';
 import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
-import { CloudUpload, Github, Download, Loader2 } from 'lucide-react';
+import { CloudUpload, Github, Download, Loader2, Clapperboard } from 'lucide-react';
 
 // Types for our application
 type APIProvider = 'openai' | 'gemini' | 'deepseek' | 'anthropic';
@@ -295,7 +295,10 @@ const SubtitleGenerator = () => {
         <div className="grid grid-cols-1 md:grid-cols-10 gap-8 h-full">
             <div className="col-span-1 md:col-span-3 h-full">
                 <div className="flex flex-col p-2 h-full">
-                    <h1 className="text-xl font-bold mb-8">AI Subtitle Generator</h1>
+                    <div className="flex items-center mb-8">
+                        <Clapperboard className="w-6 h-6 mr-2" />
+                        <h1 className="text-xl font-bold">AI Subtitle Generator</h1>
+                    </div>
 
                     <label className="mb-2 font-semibold text-sm">API Provider</label>
                     <Select value={selectedProvider} onValueChange={(value: APIProvider) => setSelectedProvider(value)}>
