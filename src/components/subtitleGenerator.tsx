@@ -99,8 +99,16 @@ const SubtitleGenerator = () => {
                 content: `Translate the following subtitle text to ${targetLang}. Maintain the original timing and formatting. Only return the translated subtitles without any additional text or explanations:\n\n${text}`
             }]
         });
-        return response.content[0].text;
+
+        // Extract text from content array
+        const translatedText = response.content
+            .filter(block => block.type === "text")
+            .map(block => block.text)
+            .join("\n");
+
+        return translatedText.trim();
     };
+
 
     const translateWithDeepSeek = async (text: string, targetLang: string): Promise<string> => {
         // DeepSeek API implementation through OpenRouter
