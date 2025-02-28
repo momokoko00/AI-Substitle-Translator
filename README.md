@@ -2,6 +2,11 @@
 
 This project is a Next.js application that allows users to translate subtitle files using various AI providers. It supports multiple subtitle formats and provides a user-friendly interface for uploading files and selecting translation options.
 
+![Desktop](https://github.com/user-attachments/assets/7d329b87-6039-4ad2-ad2a-518024a90a38)
+
+
+Check live demo: https://ai-subtitle-translator.netlify.app/
+
 ## Getting Started
 
 To get started with the AI Subtitle Generator, follow these steps:
