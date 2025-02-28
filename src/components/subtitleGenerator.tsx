@@ -315,7 +315,6 @@ const SubtitleGenerator = () => {
                         <p className="text-gray-500 text-xs">SRT, VVT or TXT Files</p>
                         <input
                             type="file"
-                            accept=".srt,text/plain,.vtt,.txt"
                             className="sr-only"
                             onChange={(e) => {
                                 const file = e.target.files?.[0];
