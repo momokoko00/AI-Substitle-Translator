@@ -368,7 +368,7 @@ const SubtitleGenerator = () => {
                         </Button>
 
                         <p className="text-sm text-black mt-4 text-center">
-                            Get your API key for Gemini from <a href="https://aistudio.google.com/apikey" className="text-blue-500 underline">aistudio.google.com/apikey</a>.
+                            Get your API key for Gemini from <a href="https://aistudio.google.com/apikey" target="_blank" className="text-blue-500 underline">aistudio.google.com/apikey</a>.
                         </p>
                     </div>
 
