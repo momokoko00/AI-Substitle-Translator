@@ -336,7 +336,7 @@ const SubtitleGenerator = () => {
                     {/* Translation Button */}
                     <div className="flex flex-col mt-auto">
                         <Button
-                            className="text-white mt-4 p-2 rounded"
+                            className="text-white mt-4 p-2 rounded cursor-pointer"
                             onClick={handleTranslate}
                             disabled={translation.isLoading}
                         >
@@ -350,7 +350,7 @@ const SubtitleGenerator = () => {
                             )}
                         </Button>
 
-                        <Button variant="outline" className="text-black mt-4 p-2 rounded">
+                        <Button variant="outline" className="text-black mt-4 p-2 rounded cursor-pointer" onClick={() => window.open('https://github.com/momokoko00/AI-Substitle-Translator', '_blank')}>
                             <Github className="w-4 h-4 mr-2" /> Fork Project
                         </Button>
 
