@@ -1,109 +1,102 @@
-# AI Subtitle Generator
+# AI Subtitle Translator
 
-This project is a Next.js application that allows users to translate subtitle files using various AI providers and generate subtitles directly from video files. It supports multiple subtitle formats and provides a user-friendly interface for uploading files and selecting translation options.
+AI Subtitle Translator is a Next.js application for translating existing subtitles and generating brand-new subtitles directly from video files. It supports multiple AI providers, handles a variety of subtitle formats, and guides you through the process with an intuitive interface.
 
-**Update: You can now upload your video file directly to generate subtitles for it!**
+## Features
 
-![Desktop](https://github.com/user-attachments/assets/7d329b87-6039-4ad2-ad2a-518024a90a38)
+- **Translate existing subtitles**: Upload `.srt`, `.vtt`, or `.txt` subtitle files and translate them into any supported language.
+- **Generate subtitles from video**: Upload a video file and let the app extract audio, transcribe it with AI, and return timestamped subtitles.
+- **Multiple AI providers**: Bring your own API key for OpenAI, Google Gemini, DeepSeek, or Anthropic and pick the model that fits your workflow.
+- **Progress feedback**: Follow every stage of the translation and generation pipelines with detailed status messages.
+- **Downloadable output**: Preview the result and export translated or newly generated subtitles with a single click.
 
+## Live Demo
 
-Check the live demo: https://ai-subtitle-translator.netlify.app/
+Explore the hosted version at [ai-subtitle-translator.netlify.app](https://ai-subtitle-translator.netlify.app/).
 
 ## Getting Started
 
-To get started with the AI Subtitle Generator, follow these steps:
+Follow the steps below to clone the repository, install dependencies, and start a local development server.
 
-### Installation
+### Prerequisites
 
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   cd ai-subtitle-generator
-   ```
+- Node.js 18 or later
+- npm (bundled with Node.js), or yarn / pnpm if you prefer an alternative package manager
 
-2. Install the dependencies:
-   ```bash
-   npm install
-   # or
-   yarn install
-   # or
-   pnpm install
-   ```
+### Clone the repository
 
-3. Run the development server:
-   ```bash
-   npm run dev
-   # or
-   yarn dev
-   # or
-   pnpm dev
-   ```
+```bash
+git clone https://github.com/<your-username>/AI-Substitle-Translator.git
+cd AI-Substitle-Translator
+```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser to see the application in action.
+> Replace `<your-username>` with the actual GitHub username or organization that hosts the repository.
 
-## Usage
+### Install dependencies
 
-### Subtitle Translation
-1. Navigate to the "Translate" tab.
-2. Select the API provider you wish to use for translation (OpenAI, Google Gemini, DeepSeek, or Anthropic).
-3. Choose the target language for translation.
-4. Enter your API key for the selected provider.
-5. Upload a subtitle file (SRT, VTT, or TXT).
-6. Click the "Translate Subtitle" button to start the translation process.
-7. The translated subtitles will appear in the preview area, and you can download them as a new subtitle file.
+Using npm:
 
-### Video Subtitle Generation
-1. Navigate to the "Generate" tab.
-2. Enter your Gemini API key.
-3. Choose the language for the generated subtitles.
-4. Upload a video file.
-5. Click the "Generate Subtitles" button to start the process.
-6. The application will extract audio from the video, process it with Gemini AI, and generate subtitles.
-7. Once complete, you can preview and download the generated subtitles.
+```bash
+npm install
+```
 
-## Components
+Using yarn:
 
-### Subtitle Generator
+```bash
+yarn install
+```
 
-The `SubtitleGenerator` component is responsible for handling the user interface and the translation/generation logic. It allows users to select an API provider, target language, and upload subtitle or video files. The component manages the translation and generation processes, including error handling and progress tracking.
+Using pnpm:
 
-Key functionalities:
-- API provider selection
-- Language selection
-- File upload (subtitle files and video files)
-- Translation handling with progress updates
-- Video subtitle generation
-- Error messaging
+```bash
+pnpm install
+```
 
-### Subtitle Parser
+### Configure environment variables
 
-The `subtitleParser.tsx` file contains utility functions for parsing subtitle files. It defines the `SubtitleBlock` interface and provides functions to parse subtitles, chunk them into manageable sizes, and convert them back to string format.
+Create a `.env.local` file at the project root and add the API keys for the providers you intend to use. The variables below are illustrative—consult your provider documentation for the exact key names and scopes.
 
-Key functionalities:
-- `parseSubtitles(text: string): SubtitleBlock[]`: Parses subtitle text into structured blocks.
-- `chunkSubtitles(blocks: SubtitleBlock[], maxBlocksPerChunk: number)`: Chunks subtitle blocks for processing.
-- `blocksToString(blocks: SubtitleBlock[]): string`: Converts structured subtitle blocks back into string format.
+```bash
+NEXT_PUBLIC_OPENAI_API_KEY=sk-...
+NEXT_PUBLIC_GEMINI_API_KEY=...
+NEXT_PUBLIC_DEEPSEEK_API_KEY=...
+NEXT_PUBLIC_ANTHROPIC_API_KEY=...
+```
 
-### Video Processor
+You can include one or many keys; the interface allows you to select which provider to activate at runtime.
 
-The `videoProcessor.tsx` file contains utilities for processing video files and generating subtitles from them.
+### Run the development server
 
-Key functionalities:
-- `extractAudioFromVideo(videoFile: File): Promise<Blob>`: Extracts audio from video files using FFmpeg.
-- `generateSubtitlesFromAudio(audioBlob: Blob, apiKey: string): Promise<string>`: Generates subtitles from audio using Gemini AI.
-- `translateSubtitles(subtitles: string, apiKey: string, targetLanguage: string): Promise<string>`: Translates generated subtitles to the target language.
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+```
 
-## API Providers
+Open [http://localhost:3000](http://localhost:3000) in your browser to access the app.
 
-The application supports the following API providers for translation:
-- **OpenAI**: Uses the GPT-4O model for translation.
-- **Google Gemini**: Utilizes Google's generative AI for subtitle translation and video subtitle generation.
-- **DeepSeek**: Integrates with the DeepSeek API for translation services.
-- **Anthropic**: Leverages Claude 3.7 Sonnet for subtitle translation.
+## Usage Overview
+
+1. Choose between the **Translate** or **Generate** tabs.
+2. Select an AI provider and target language.
+3. Paste your API key (or use the one from `.env.local` if you inject it into the client).
+4. Upload the relevant subtitle or video file.
+5. Start the process and monitor progress.
+6. Preview the subtitles and download them when you are satisfied.
+
+## Project Structure Highlights
+
+- `src/app/page.tsx`: Entry point for the main interface.
+- `src/components/subtitle-generator/SubtitleGenerator.tsx`: Core component that orchestrates translation and generation flows.
+- `src/lib/subtitleParser.ts`: Helpers for parsing, chunking, and serializing subtitle data.
+- `src/lib/videoProcessor.ts`: Utility functions for extracting audio from video and generating subtitles with Gemini.
+- `public/`: Static assets and icons.
 
 ## Contributing
 
-Contributions are welcome! If you have suggestions for improvements or new features, please open an issue or submit a pull request.
+Contributions are welcome! Please open an issue to discuss changes or submit a pull request with your improvements.
 
 ## License
 
